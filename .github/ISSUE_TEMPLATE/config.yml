@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Поддержка Мемуарии в Telegram
+    url: https://t.me/memuaria_bot?start=help
+    about: Вопросы об аккаунте, книге, оплате и работе сервиса лучше отправить в поддержку.
+  - name: Конфиденциальное сообщение об уязвимости
+    url: https://github.com/memuaria/mcp/blob/main/SECURITY.md
+    about: Откройте политику безопасности и не публикуйте сведения об уязвимостях в Issues.

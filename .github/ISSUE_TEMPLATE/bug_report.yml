@@ -1,0 +1,58 @@
+name: Сообщить о проблеме
+description: Ошибка подключения или работы Memuaria MCP
+title: "[Ошибка]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за сообщение. Не публикуйте пароли, токены, файлы cookie, личные воспоминания и другие персональные данные.
+
+        Об уязвимостях сообщайте конфиденциально по инструкции в SECURITY.md.
+
+  - type: input
+    id: client
+    attributes:
+      label: MCP-клиент и версия
+      description: Например, Claude Code, Codex CLI, VS Code или Cursor.
+      placeholder: "Codex CLI, версия …"
+    validations:
+      required: true
+
+  - type: input
+    id: operating-system
+    attributes:
+      label: Операционная система
+      placeholder: "macOS, Windows или Linux"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Что произошло
+      description: Опишите проблему и ожидаемый результат без конфиденциальных данных.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Как воспроизвести
+      description: Перечислите безопасные шаги воспроизведения. Перед отправкой удалите секреты и личные данные.
+    validations:
+      required: true
+
+  - type: textarea
+    id: redacted-error
+    attributes:
+      label: Текст ошибки
+      description: Необязательно. Приложите только очищенный текст ошибки без токенов, cookie, личных историй и персональных данных.
+      render: shell
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Проверка безопасности
+      options:
+        - label: Я удалил(а) из сообщения секреты, личные воспоминания и персональные данные.
+          required: true
