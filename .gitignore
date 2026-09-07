@@ -1,0 +1,49 @@
+# Operating-system metadata
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+
+# Editor state
+.idea/
+*.swp
+*.swo
+*~
+.vscode/*
+!.vscode/extensions.json
+!.vscode/mcp.json
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+.envrc
+.direnv/
+.npmrc
+*.key
+*.pem
+*.p12
+*.pfx
+.mcp-auth/
+
+# Node.js and generated output
+node_modules/
+dist/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+*.tgz
+*.tar.gz
+*.zip
+
+# Local planning and temporary files
+plan.md
+.tmp/
+*.tmp
+*.bak
+*.orig

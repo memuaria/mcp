@@ -1,0 +1,19 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.memuaria/mcp",
+  "title": "Memuaria MCP",
+  "description": "Connect AI assistants to Memuaria memories, stories, and help",
+  "version": "0.1.0",
+  "websiteUrl": "https://memuaria.ru",
+  "repository": {
+    "url": "https://github.com/memuaria/mcp",
+    "source": "github",
+    "id": "1360310054"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://memuaria.ru/mcp"
+    }
+  ]
+}

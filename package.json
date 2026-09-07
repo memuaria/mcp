@@ -1,0 +1,28 @@
+{
+  "name": "memuaria-mcp-repository",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Public documentation and smoke tests for the hosted Memuaria MCP server",
+  "type": "module",
+  "scripts": {
+    "smoke": "node scripts/smoke-test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/memuaria/mcp.git"
+  },
+  "homepage": "https://memuaria.ru",
+  "bugs": {
+    "url": "https://github.com/memuaria/mcp/issues"
+  },
+  "keywords": [
+    "memuaria",
+    "mcp",
+    "model-context-protocol",
+    "streamable-http"
+  ],
+  "license": "MIT"
+}
