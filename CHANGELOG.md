@@ -1,14 +1,14 @@
-# Changelog
+# История изменений
 
-All notable changes to this project will be documented in this file.
+В этом файле документируются все заметные изменения проекта.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), а версии проекта соответствуют [семантическому версионированию](https://semver.org/lang/ru/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Не выпущено]
 
-### Added
+### Добавлено
 
-- Public installation and security documentation.
-- MCP Registry metadata for the hosted Streamable HTTP endpoint.
-- Manual GitHub Actions connection smoke test.
-- Initial public repository.
+- Публичная документация по подключению и безопасности.
+- Метаданные MCP Registry для облачного сервера Streamable HTTP.
+- Ручная проверка подключения через GitHub Actions.
+- Начальная структура публичного репозитория.

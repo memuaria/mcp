@@ -1,4 +1,4 @@
-name: MCP connection smoke test
+name: Проверка подключения MCP
 
 on:
   workflow_dispatch:

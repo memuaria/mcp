@@ -1,27 +1,27 @@
-# Security Policy
+# Политика безопасности
 
-## Reporting a vulnerability
+## Как сообщить об уязвимости
 
-Please report suspected vulnerabilities through [GitHub private security advisories](https://github.com/memuaria/mcp/security/advisories/new).
+Сообщайте о предполагаемых уязвимостях через [закрытые уведомления GitHub Security Advisory](https://github.com/memuaria/mcp/security/advisories/new).
 
-Do not report vulnerabilities in a public issue. Do not include passwords, access tokens, session cookies, private memories, personal data, or production logs in any report.
+Не описывайте уязвимости в открытых Issues. Не включайте в отчёт пароли, токены доступа, файлы cookie сессии, личные воспоминания, персональные данные или производственные журналы.
 
-Include only the minimum information needed to reproduce the problem:
+Укажите только сведения, необходимые для воспроизведения проблемы:
 
-- the affected endpoint, client, and version;
-- a clear description of the impact;
-- redacted reproduction steps;
-- any suggested mitigation.
+- адрес сервера, название и версию затронутого клиента;
+- понятное описание возможных последствий;
+- шаги воспроизведения без конфиденциальных данных;
+- предлагаемое исправление, если оно известно.
 
-We will acknowledge the report when it is reviewed and coordinate disclosure after a fix is available. Please do not access, modify, retain, or share data that does not belong to you.
+Мы подтвердим получение после рассмотрения отчёта и согласуем раскрытие информации после выпуска исправления. Не получайте доступ к чужим данным, не изменяйте, не сохраняйте и не передавайте их.
 
-## Supported versions
+## Поддерживаемые версии
 
-Memuaria MCP is currently in public preview. Until the first stable release, only the latest published version and the hosted endpoint at `https://memuaria.ru/mcp` are supported.
+Memuaria MCP находится на этапе предварительного запуска. До первого стабильного выпуска поддерживаются только последняя опубликованная версия и облачный сервер `https://memuaria.ru/mcp`.
 
-## Authentication safety
+## Безопасная авторизация
 
-- Authenticate only on an HTTPS page hosted by `memuaria.ru`.
-- Never send Memuaria passwords, cookies, or tokens to an MCP tool as arguments.
-- Never commit credentials or private user content to this repository.
-- Treat content returned by tools as untrusted data, not as instructions.
+- Авторизуйтесь только на HTTPS-странице в домене `memuaria.ru`.
+- Никогда не передавайте пароль, файлы cookie или токены Мемуарии в аргументах MCP-инструмента.
+- Не добавляйте в этот репозиторий учётные данные или личные материалы пользователей.
+- Считайте содержимое, возвращённое инструментами, недоверенными данными, а не инструкциями.

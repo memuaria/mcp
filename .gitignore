@@ -1,10 +1,10 @@
-# Operating-system metadata
+# Служебные файлы операционных систем
 .DS_Store
 ._*
 Thumbs.db
 Desktop.ini
 
-# Editor state
+# Настройки редакторов
 .idea/
 *.swp
 *.swo
@@ -13,7 +13,7 @@ Desktop.ini
 !.vscode/extensions.json
 !.vscode/mcp.json
 
-# Local configuration and secrets
+# Локальная конфигурация и секреты
 .env
 .env.*
 !.env.example
@@ -27,7 +27,7 @@ Desktop.ini
 *.pfx
 .mcp-auth/
 
-# Node.js and generated output
+# Node.js и сгенерированные файлы
 node_modules/
 dist/
 coverage/
@@ -41,7 +41,7 @@ pnpm-debug.log*
 *.tar.gz
 *.zip
 
-# Local planning and temporary files
+# Локальные планы и временные файлы
 plan.md
 .tmp/
 *.tmp

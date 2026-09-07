@@ -14,7 +14,7 @@ function parseResponse(contentType, body) {
       .find((line) => line && line !== '[DONE]')
     if (data) return JSON.parse(data)
   }
-  throw new Error(`unexpected response type: ${contentType || 'missing Content-Type'}`)
+  throw new Error(`неожиданный тип ответа: ${contentType || 'заголовок Content-Type отсутствует'}`)
 }
 
 async function post(message, sessionId) {
@@ -49,14 +49,14 @@ const initialize = await post({
 
 if (initialize.status === 401) {
   if (!initialize.headers.has('www-authenticate')) {
-    throw new Error('server returned 401 without a WWW-Authenticate challenge')
+    throw new Error('сервер вернул 401 без запроса авторизации WWW-Authenticate')
   }
-  console.log('Memuaria MCP is reachable and requires authentication.')
+  console.log('Memuaria MCP доступен и требует авторизации.')
   process.exit(0)
 }
 
 if (!initialize.ok) {
-  throw new Error(`initialize failed with HTTP ${initialize.status}`)
+  throw new Error(`запрос initialize завершился с HTTP ${initialize.status}`)
 }
 
 const initializedBody = await initialize.text()
@@ -65,7 +65,7 @@ const initialized = parseResponse(
   initializedBody,
 )
 if (initialized?.jsonrpc !== '2.0' || initialized?.id !== 1 || !initialized?.result?.serverInfo) {
-  throw new Error('initialize returned an invalid MCP response')
+  throw new Error('запрос initialize вернул некорректный ответ MCP')
 }
 
 const sessionId = initialize.headers.get('mcp-session-id')
@@ -74,18 +74,18 @@ const initializedNotification = await post(
   sessionId,
 )
 if (!initializedNotification.ok) {
-  throw new Error(`notifications/initialized failed with HTTP ${initializedNotification.status}`)
+  throw new Error(`запрос notifications/initialized завершился с HTTP ${initializedNotification.status}`)
 }
 
 const toolsResponse = await post({ jsonrpc: '2.0', id: 2, method: 'tools/list', params: {} }, sessionId)
-if (!toolsResponse.ok) throw new Error(`tools/list failed with HTTP ${toolsResponse.status}`)
+if (!toolsResponse.ok) throw new Error(`запрос tools/list завершился с HTTP ${toolsResponse.status}`)
 
 const tools = parseResponse(
   toolsResponse.headers.get('content-type') ?? '',
   await toolsResponse.text(),
 )
 if (tools?.jsonrpc !== '2.0' || tools?.id !== 2 || !Array.isArray(tools?.result?.tools)) {
-  throw new Error('tools/list returned an invalid MCP response')
+  throw new Error('запрос tools/list вернул некорректный ответ MCP')
 }
 
-console.log(`Memuaria MCP is healthy: ${tools.result.tools.length} tool(s) discovered.`)
+console.log(`Memuaria MCP работает: найдено инструментов — ${tools.result.tools.length}.`)

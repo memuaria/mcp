@@ -1,95 +1,93 @@
-# Memuaria MCP
+# Memuaria MCP — MCP-сервер Мемуарии
 
-[Memuaria](https://memuaria.ru) helps families turn spoken and written memories into a keepsake book. Memuaria MCP connects compatible AI assistants to Memuaria through the open [Model Context Protocol](https://modelcontextprotocol.io).
-
-Мемуария помогает сохранить семейные воспоминания в книге. Memuaria MCP позволяет совместимым AI-ассистентам работать с Мемуарией через открытый протокол MCP.
+[Мемуария](https://memuaria.ru) помогает семьям превратить устные и письменные воспоминания в памятную книгу. Memuaria MCP — официальный MCP-сервер Мемуарии для подключения совместимых ИИ-ассистентов через открытый [протокол Model Context Protocol](https://modelcontextprotocol.io).
 
 > [!IMPORTANT]
-> **Public preview.** The hosted endpoint is still under development and is not available yet. The installation instructions below are ready for launch, but connections to `https://memuaria.ru/mcp` will fail until the service is released.
+> **Предварительная версия.** Облачный MCP-сервер ещё разрабатывается и пока недоступен. Инструкции по подключению уже подготовлены, но до запуска сервиса обращения к `https://memuaria.ru/mcp` будут завершаться ошибкой.
 
-## What it does
+## Возможности
 
-Memuaria MCP is the official connection between Memuaria and MCP-compatible assistants. Depending on the tools available to your account, an assistant can help you:
+Memuaria MCP связывает Мемуарию с Claude, Codex, ChatGPT и другими совместимыми ИИ-ассистентами. В зависимости от доступных вашему аккаунту инструментов ассистент сможет:
 
-- find Memuaria product and help information;
-- understand the current state of a memory or story draft;
-- prepare edits for your review;
-- continue a Memuaria workflow without manually copying private text between applications.
+- находить информацию о Мемуарии и ответы в справочном центре;
+- узнавать текущее состояние воспоминания или черновика истории;
+- готовить изменения для вашей проверки;
+- продолжать работу над книгой без ручного копирования личных текстов между приложениями.
 
-The hosted service is the source of truth. This repository is the public home for documentation, configuration examples, future compatibility helpers, and the issue tracker; it does not contain Memuaria's private application or production infrastructure.
+Источником данных и логики остаётся облачный сервис Мемуарии. Этот репозиторий содержит публичную документацию, примеры конфигурации, будущие средства совместимости и раздел для сообщений о проблемах. Закрытый код приложения и производственная инфраструктура Мемуарии сюда не входят.
 
-## Server address
+## Адрес MCP-сервера
 
 ```text
 https://memuaria.ru/mcp
 ```
 
-Transport: **Streamable HTTP**. Legacy SSE is not supported.
+Транспорт: **Streamable HTTP**. Устаревший транспорт SSE не поддерживается.
 
-Most users should connect directly to this address. There is no server process to install, no repository to clone, and no Memuaria password or token to paste into a configuration file.
+Большинству пользователей достаточно напрямую подключить этот адрес. Не нужно запускать локальный сервер, клонировать репозиторий или добавлять пароль либо токен Мемуарии в файл конфигурации.
 
-## Install
+## Как подключить Memuaria MCP
 
-### Claude on the web and Claude Desktop
+### Claude в браузере и Claude Desktop
 
-Remote custom connectors are shared across Claude's supported surfaces.
+Удалённые пользовательские коннекторы доступны в поддерживаемых версиях Claude.
 
-1. Open **Customize → Connectors**.
-2. Select **Add custom connector**.
-3. Enter `Memuaria` as the name and `https://memuaria.ru/mcp` as the remote MCP server URL.
-4. Select **Add**, then **Connect** and complete sign-in when prompted.
+1. Откройте **Customize → Connectors**.
+2. Нажмите **Add custom connector**.
+3. Укажите название `Memuaria` и адрес удалённого MCP-сервера `https://memuaria.ru/mcp`.
+4. Нажмите **Add**, затем **Connect** и войдите в Мемуарию в открывшемся окне.
 
-Team and Enterprise workspaces may require an owner to add the connector first. See [Anthropic's remote connector guide](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp).
+В рабочих пространствах Team и Enterprise сначала добавить коннектор может потребоваться владельцу. Подробности приведены в [документации Anthropic об удалённых коннекторах](https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp).
 
 ### Claude Code
 
-Install for your user account:
+Добавьте сервер в пользовательскую конфигурацию:
 
 ```bash
 claude mcp add --scope user --transport http memuaria https://memuaria.ru/mcp
 ```
 
-Then start Claude Code and run `/mcp` to inspect the connection and complete authentication. To verify or remove it from the terminal:
+Запустите Claude Code и выполните `/mcp`, чтобы проверить подключение и пройти авторизацию. Проверить или удалить конфигурацию из терминала можно так:
 
 ```bash
 claude mcp get memuaria
 claude mcp remove --scope user memuaria
 ```
 
-See the [Claude Code MCP documentation](https://code.claude.com/docs/en/mcp) for scopes and troubleshooting.
+Подробнее о режимах подключения и диагностике — в [документации Claude Code MCP](https://code.claude.com/docs/en/mcp).
 
-### Codex CLI, Codex IDE extension, and ChatGPT desktop app
+### Codex CLI, расширение Codex для IDE и приложение ChatGPT для компьютера
 
-Codex clients and the ChatGPT desktop app share the same local MCP configuration. Add the server once:
+Клиенты Codex и приложение ChatGPT для компьютера используют общую локальную конфигурацию MCP. Добавьте сервер один раз:
 
 ```bash
 codex mcp add memuaria --url https://memuaria.ru/mcp
 ```
 
-If sign-in is required:
+Если требуется авторизация:
 
 ```bash
 codex mcp login memuaria
 ```
 
-Verify the configuration with `codex mcp list`. You can also add the server through **Settings → MCP servers → Add server**, choose **Streamable HTTP**, and enter the URL above. Restart the desktop app or IDE extension after saving.
+Проверьте конфигурацию командой `codex mcp list`. Сервер также можно добавить через **Settings → MCP servers → Add server**: выберите **Streamable HTTP** и укажите адрес выше. После сохранения перезапустите приложение или расширение IDE.
 
-Manual configuration in `~/.codex/config.toml`:
+Ручная настройка в `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.memuaria]
 url = "https://memuaria.ru/mcp"
 ```
 
-See the [official OpenAI MCP documentation](https://developers.openai.com/codex/mcp).
+Подробнее — в [официальной документации OpenAI о MCP в Codex](https://developers.openai.com/codex/mcp).
 
-### ChatGPT on the web
+### ChatGPT в браузере
 
-ChatGPT on the web uses remote MCP tools supplied through installed plugins rather than the local Codex configuration file. A Memuaria plugin will be documented here when it is available. Until then, adding the URL to Codex does not automatically make it available in ChatGPT web.
+Веб-версия ChatGPT получает удалённые MCP-инструменты через установленные плагины, а не из локального файла конфигурации Codex. Инструкция для плагина Мемуарии появится здесь после его выпуска. Пока добавление адреса в Codex не делает сервер автоматически доступным в веб-версии ChatGPT.
 
 ### VS Code
 
-Run **MCP: Open User Configuration** and add:
+Выполните команду **MCP: Open User Configuration** и добавьте:
 
 ```json
 {
@@ -102,11 +100,11 @@ Run **MCP: Open User Configuration** and add:
 }
 ```
 
-User configuration keeps the connection available across projects. See [VS Code's MCP server documentation](https://code.visualstudio.com/docs/agent-customization/mcp-servers).
+Пользовательская конфигурация делает подключение доступным во всех проектах. Подробнее — в [документации VS Code по MCP-серверам](https://code.visualstudio.com/docs/agent-customization/mcp-servers).
 
 ### Cursor
 
-Open **Customize → MCPs**, or create `~/.cursor/mcp.json` for a global connection:
+Откройте **Customize → MCPs** или создайте файл `~/.cursor/mcp.json` для глобального подключения:
 
 ```json
 {
@@ -118,11 +116,11 @@ Open **Customize → MCPs**, or create `~/.cursor/mcp.json` for a global connect
 }
 ```
 
-Complete OAuth sign-in when Cursor prompts you. See the [Cursor MCP documentation](https://cursor.com/docs/mcp).
+Пройдите OAuth-авторизацию, когда Cursor откроет соответствующее окно. Подробнее — в [документации Cursor по MCP](https://cursor.com/docs/mcp).
 
-### Other MCP clients
+### Другие MCP-клиенты
 
-Use this remote-server configuration when your client accepts the common `mcpServers` format:
+Если клиент принимает распространённый формат `mcpServers`, используйте следующую конфигурацию удалённого сервера:
 
 ```json
 {
@@ -135,69 +133,69 @@ Use this remote-server configuration when your client accepts the common `mcpSer
 }
 ```
 
-Field names differ between clients. Choose **HTTP** or **Streamable HTTP**, not SSE, and use the server address exactly as shown above.
+Названия полей различаются в разных клиентах. Выберите транспорт **HTTP** или **Streamable HTTP**, но не SSE, и укажите адрес сервера точно так, как показано выше.
 
-Clients that support only local `stdio` servers will need a compatibility launcher. Memuaria does not currently publish one. Prefer a client with direct Streamable HTTP support and do not install similarly named third-party packages on Memuaria's behalf.
+Клиентам, поддерживающим только локальные `stdio`-серверы, понадобится совместимый посредник. Сейчас Мемуария не выпускает такой пакет. Рекомендуем клиент с прямой поддержкой Streamable HTTP. Не устанавливайте от имени Мемуарии сторонние пакеты с похожими названиями.
 
-## Authentication and privacy
+## Авторизация и конфиденциальность
 
-Public information may be available without signing in. Access to account or book data requires Memuaria authentication and is limited to the signed-in user's permissions.
+Часть общей информации может быть доступна без входа. Для доступа к аккаунту или книге потребуется авторизация в Мемуарии; сервер предоставляет только те данные и действия, которые разрешены вошедшему пользователю.
 
-- Sign in only through a browser page on `memuaria.ru`.
-- Never paste your Memuaria password, browser cookies, session values, or access tokens into MCP configuration files, shell commands, issues, or logs.
-- When you approve a tool call, the information needed for that call is sent through your MCP client and may be processed by your AI provider. Review that provider's privacy and data-control settings before using private memories.
-- Review every proposed change before approving it. Tool availability and approval behavior depend on your MCP client and account.
-- Disconnect Memuaria from your MCP client when you no longer use it.
+- Входите в аккаунт только на странице в домене `memuaria.ru`, открытой в браузере.
+- Никогда не вставляйте пароль Мемуарии, файлы cookie, данные сессии или токены доступа в конфигурацию MCP, команды терминала, сообщения об ошибках или журналы.
+- При подтверждении вызова инструмента необходимые ему данные передаются через MCP-клиент и могут обрабатываться поставщиком вашего ИИ-ассистента. Перед работой с личными воспоминаниями изучите его настройки конфиденциальности и управления данными.
+- Перед подтверждением проверяйте каждое предлагаемое изменение. Набор инструментов и порядок подтверждения зависят от MCP-клиента и вашего аккаунта.
+- Отключите Мемуарию от MCP-клиента, если больше не пользуетесь интеграцией.
 
-Use of the service is governed by the [Memuaria privacy policy](https://memuaria.ru/privacy-policy) and [terms of service](https://memuaria.ru/terms-of-service).
+Использование сервиса регулируют [политика конфиденциальности](https://memuaria.ru/privacy-policy) и [пользовательское соглашение](https://memuaria.ru/terms-of-service) Мемуарии.
 
-## Security
+## Безопасность
 
-Treat MCP servers as software that can receive context and request actions through your AI client. Review the server address and requested permissions before connecting.
+MCP-сервер может получать контекст и запрашивать действия через ИИ-клиент. Перед подключением проверяйте адрес сервера и запрашиваемые разрешения.
 
-To report a vulnerability, use [GitHub's private security advisory form](https://github.com/memuaria/mcp/security/advisories/new). Please do not include private memories, personal data, credentials, or security-sensitive details in a public issue.
+Для конфиденциального сообщения об уязвимости используйте [форму GitHub Security Advisory](https://github.com/memuaria/mcp/security/advisories/new). Не публикуйте в открытых Issues личные воспоминания, персональные данные, учётные данные или сведения об уязвимости.
 
-## Troubleshooting
+## Решение проблем
 
-### The server does not connect
+### Сервер не подключается
 
-1. Confirm the URL is exactly `https://memuaria.ru/mcp`.
-2. Confirm the transport is HTTP or Streamable HTTP, not SSE or `stdio`.
-3. Update your MCP client to a current version.
-4. Reconnect or restart the client after changing its configuration.
-5. If the client reports that authentication is required, complete sign-in in the browser window it opens.
+1. Убедитесь, что указан точный адрес `https://memuaria.ru/mcp`.
+2. Выберите транспорт HTTP или Streamable HTTP, но не SSE и не `stdio`.
+3. Обновите MCP-клиент до актуальной версии.
+4. После изменения конфигурации переподключите сервер или перезапустите клиент.
+5. Если клиент сообщает о необходимости авторизации, войдите в Мемуарию в открывшемся окне браузера.
 
-During the public-preview period, a `404` response is expected until the hosted endpoint launches.
+До публичного запуска сервера ответ `404` является ожидаемым.
 
-### Tools are missing
+### Инструменты не отображаются
 
-Tools can vary by authentication state, account permissions, and the page or workflow in use. Reconnect after signing in, then ask the client to refresh the server's tool list.
+Набор инструментов может зависеть от состояния авторизации, прав аккаунта и текущего сценария работы. После входа переподключитесь и попросите клиент обновить список инструментов сервера.
 
-### Still stuck?
+### Проблема не решилась?
 
-[Open a GitHub issue](https://github.com/memuaria/mcp/issues/new) with your client name, client version, operating system, and the redacted error message. Never attach tokens, cookies, private story text, or personal information.
+[Создайте GitHub Issue](https://github.com/memuaria/mcp/issues/new) и укажите название и версию клиента, операционную систему и текст ошибки без конфиденциальных данных. Никогда не прикладывайте токены, файлы cookie, личные тексты историй или персональные сведения.
 
-## For contributors
+## Для участников разработки
 
-Issues and documentation improvements are welcome. Please keep examples free of real personal data and credentials.
+Мы принимаем сообщения о проблемах и улучшения документации. Не используйте в примерах настоящие персональные данные или учётные сведения.
 
-To test the hosted connection from a local checkout:
+Чтобы проверить облачное подключение из локальной копии репозитория:
 
 ```bash
 npm ci
 npm run smoke
 ```
 
-The smoke test accepts an optional `MEMUARIA_MCP_BEARER_TOKEN` environment variable, does not print it, and treats a standards-compliant authentication challenge as a successful reachability check.
+Для проверки можно передать токен через переменную окружения `MEMUARIA_MCP_BEARER_TOKEN`. Скрипт не выводит токен и считает корректный запрос авторизации успешной проверкой доступности сервера.
 
-The hosted Memuaria MCP service is developed and operated separately from this public integration repository. Server-side implementation details, deployment configuration, secrets, and customer data do not belong here.
+Облачный MCP-сервис Мемуарии разрабатывается и работает отдельно от этого публичного репозитория интеграции. Серверный код, конфигурация развёртывания, секреты и данные пользователей не должны попадать в этот репозиторий.
 
-## Links
+## Ссылки
 
-- [Memuaria](https://memuaria.ru)
-- [Help center](https://memuaria.ru/help)
+- [Мемуария](https://memuaria.ru)
+- [Справочный центр](https://memuaria.ru/help)
 - [Model Context Protocol](https://modelcontextprotocol.io)
-- [Security policy](SECURITY.md)
-- [Changelog](CHANGELOG.md)
-- [MIT license](LICENSE)
-- [Issue tracker](https://github.com/memuaria/mcp/issues)
+- [Политика безопасности](SECURITY.md)
+- [История изменений](CHANGELOG.md)
+- [Лицензия MIT](LICENSE)
+- [Сообщить о проблеме](https://github.com/memuaria/mcp/issues)
