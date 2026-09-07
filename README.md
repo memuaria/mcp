@@ -149,6 +149,18 @@ url = "https://memuaria.ru/mcp"
 
 Использование сервиса регулируют [политика конфиденциальности](https://memuaria.ru/privacy-policy) и [пользовательское соглашение](https://memuaria.ru/terms-of-service) Мемуарии.
 
+## Обратная связь
+
+Вопросы, предложения и отзывы о Memuaria MCP можно отправить удобным способом:
+
+- [написать Telegram-боту Мемуарии](https://t.me/memuaria_bot?start=help) — `@memuaria_bot`;
+- написать на [hello@memuaria.ru](mailto:hello@memuaria.ru);
+- [создать GitHub Issue](https://github.com/memuaria/mcp/issues/new), если проблема относится к подключению или работе MCP-клиента.
+
+В сообщении об ошибке укажите название и версию MCP-клиента, операционную систему и безопасные шаги воспроизведения. Не отправляйте пароли, токены, файлы cookie, личные воспоминания или другие персональные данные.
+
+Об уязвимостях сообщайте конфиденциально по инструкции в [политике безопасности](SECURITY.md), а не через открытые Issues.
+
 ## Безопасность
 
 MCP-сервер может получать контекст и запрашивать действия через ИИ-клиент. Перед подключением проверяйте адрес сервера и запрашиваемые разрешения.
@@ -194,6 +206,8 @@ npm run smoke
 
 - [Мемуария](https://memuaria.ru)
 - [Справочный центр](https://memuaria.ru/help)
+- [Telegram-бот поддержки](https://t.me/memuaria_bot?start=help)
+- [Email поддержки](mailto:hello@memuaria.ru)
 - [Model Context Protocol](https://modelcontextprotocol.io)
 - [Политика безопасности](SECURITY.md)
 - [История изменений](CHANGELOG.md)
