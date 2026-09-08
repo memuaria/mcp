@@ -43,7 +43,6 @@ pnpm-debug.log*
 
 # Локальные планы и временные файлы
 plan.md
-profile-readme.md
 .tmp/
 *.tmp
 *.bak
